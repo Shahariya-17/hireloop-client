@@ -15,42 +15,52 @@ function Navbar() {
   ];
 
   return (
-    <nav className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white">
-      <header className="mx-auto flex h-[60px] max-w-[1280px] items-center justify-between px-5 md:px-8">
+    <nav className="sticky top-0 z-50 w-full border-b border-gray-100 bg-white/90 backdrop-blur-xl">
+
+      <header className="mx-auto grid h-[76px] w-full max-w-[1600px] grid-cols-[1fr_auto_1fr] items-center px-5 sm:px-8 lg:px-12 xl:px-16">
 
         {/* Logo */}
-        <Link href="/" className="flex shrink-0 items-center gap-2">
-          <svg
-            width="19"
-            height="19"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <circle
-              cx="12"
-              cy="12"
-              r="8.5"
-              stroke="#5145E5"
-              strokeWidth="3.5"
-              strokeDasharray="43 12"
-              transform="rotate(-45 12 12)"
-              strokeLinecap="round"
-            />
-          </svg>
+        <Link
+          href="/"
+          className="flex w-fit items-center gap-2.5 no-underline"
+        >
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#6657F5] to-[#4335CF] shadow-lg shadow-indigo-500/20">
+            <svg
+              width="23"
+              height="23"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="12"
+                cy="12"
+                r="8"
+                stroke="white"
+                strokeWidth="3"
+                strokeDasharray="40 12"
+                transform="rotate(-45 12 12)"
+                strokeLinecap="round"
+              />
+            </svg>
+          </div>
 
-          <span className="text-[15px] font-bold tracking-tight text-gray-900">
-            HireLoop
+          <span className="text-[21px] font-extrabold tracking-tight text-gray-950">
+            Hire<span className="text-[#5145E5]">Loop</span>
           </span>
         </Link>
 
         {/* Desktop Navigation */}
-        <ul className="hidden items-center gap-7 md:flex">
-          {navLinks.map((link) => (
+        <ul className="hidden items-center gap-1 lg:flex">
+          {navLinks.map((link, index) => (
             <li key={link.name}>
               <Link
                 href={link.href}
-                className="text-[12px] font-medium text-gray-700 transition-colors hover:text-[#5145E5]"
+                className={`rounded-xl px-4 py-2.5 text-[13px] font-semibold no-underline transition-all duration-200 ${
+                  index === 0
+                    ? "bg-indigo-50 text-[#5145E5]"
+                    : "text-gray-600 hover:bg-gray-50 hover:text-[#5145E5]"
+                }`}
               >
                 {link.name}
               </Link>
@@ -59,12 +69,13 @@ function Navbar() {
         </ul>
 
         {/* Desktop Auth Buttons */}
-        <div className="hidden items-center gap-2 md:flex">
+        <div className="hidden items-center justify-self-end gap-3 lg:flex">
+
           <Button
             as={Link}
             href="/login"
             variant="bordered"
-            className="h-[30px] min-w-[54px] rounded-lg border border-gray-200 bg-white px-3 text-[11px] font-semibold text-gray-800"
+            className="h-10 min-w-[88px] rounded-xl border border-gray-200 bg-white px-5 text-[13px] font-semibold text-gray-700 transition-all hover:border-indigo-200 hover:bg-indigo-50 hover:text-[#5145E5]"
           >
             Log in
           </Button>
@@ -72,16 +83,28 @@ function Navbar() {
           <Button
             as={Link}
             href="/signup"
-            className="h-[30px] min-w-[61px] rounded-lg bg-[#4939D5] px-3 text-[11px] font-semibold text-white shadow-sm hover:bg-[#3829B9]"
+            className="h-10 min-w-[105px] rounded-xl bg-gradient-to-r from-[#5B4CE6] to-[#4737D1] px-5 text-[13px] font-bold text-white shadow-lg shadow-indigo-500/20 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-indigo-500/30"
           >
             Sign up
+            <svg
+              className="ml-1 h-4 w-4"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
           </Button>
+
         </div>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile Menu Toggle */}
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="flex h-9 w-9 items-center justify-center rounded-lg text-gray-700 hover:bg-gray-100 md:hidden"
+          className="flex h-10 w-10 items-center justify-center justify-self-end rounded-xl border border-gray-200 bg-white text-gray-800 transition-colors hover:bg-gray-50 lg:hidden"
           aria-label="Toggle menu"
           aria-expanded={isMenuOpen}
         >
@@ -108,18 +131,24 @@ function Navbar() {
             )}
           </svg>
         </button>
+
       </header>
 
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <div className="border-t border-gray-100 bg-white px-5 py-4 md:hidden">
+        <div className="border-t border-gray-100 bg-white px-5 py-5 shadow-xl shadow-gray-900/5 sm:px-8 lg:hidden">
+
           <ul className="flex flex-col gap-1">
-            {navLinks.map((link) => (
+            {navLinks.map((link, index) => (
               <li key={link.name}>
                 <Link
                   href={link.href}
                   onClick={() => setIsMenuOpen(false)}
-                  className="block rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-[#5145E5]"
+                  className={`block rounded-xl px-4 py-3 text-sm font-semibold no-underline transition-colors ${
+                    index === 0
+                      ? "bg-indigo-50 text-[#5145E5]"
+                      : "text-gray-600 hover:bg-gray-50 hover:text-[#5145E5]"
+                  }`}
                 >
                   {link.name}
                 </Link>
@@ -127,12 +156,13 @@ function Navbar() {
             ))}
           </ul>
 
-          <div className="mt-3 flex gap-2 border-t border-gray-100 pt-4">
+          <div className="mt-4 flex gap-3 border-t border-gray-100 pt-4">
+
             <Button
               as={Link}
               href="/login"
               variant="bordered"
-              className="h-10 flex-1 rounded-lg border-gray-200 text-sm font-semibold text-gray-800"
+              className="h-11 flex-1 rounded-xl border-gray-200 text-sm font-semibold text-gray-700"
             >
               Log in
             </Button>
@@ -140,13 +170,15 @@ function Navbar() {
             <Button
               as={Link}
               href="/signup"
-              className="h-10 flex-1 rounded-lg bg-[#4939D5] text-sm font-semibold text-white"
+              className="h-11 flex-1 rounded-xl bg-gradient-to-r from-[#5B4CE6] to-[#4737D1] text-sm font-bold text-white shadow-md shadow-indigo-500/20"
             >
               Sign up
             </Button>
+
           </div>
         </div>
       )}
+
     </nav>
   );
 }
