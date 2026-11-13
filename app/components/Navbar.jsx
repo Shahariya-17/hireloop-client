@@ -17,12 +17,12 @@ function Navbar() {
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-gray-100 bg-white/90 backdrop-blur-xl">
 
-      <header className="mx-auto grid h-[76px] w-full max-w-[1600px] grid-cols-[1fr_auto_1fr] items-center px-5 sm:px-8 lg:px-12 xl:px-16">
+      <header className="mx-auto flex h-[76px] w-full max-w-[1600px] items-center justify-between px-5 sm:px-8 lg:px-12 xl:px-16">
 
         {/* Logo */}
         <Link
           href="/"
-          className="flex w-fit items-center gap-2.5 no-underline"
+          className="flex w-fit shrink-0 items-center gap-2.5 no-underline"
         >
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#6657F5] to-[#4335CF] shadow-lg shadow-indigo-500/20">
             <svg
@@ -69,7 +69,7 @@ function Navbar() {
         </ul>
 
         {/* Desktop Auth Buttons */}
-        <div className="hidden items-center justify-self-end gap-3 lg:flex">
+        <div className="hidden items-center gap-3 lg:flex">
 
           <Button
             as={Link}
@@ -104,7 +104,7 @@ function Navbar() {
         {/* Mobile Menu Toggle */}
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="flex h-10 w-10 items-center justify-center justify-self-end rounded-xl border border-gray-200 bg-white text-gray-800 transition-colors hover:bg-gray-50 lg:hidden"
+          className="ml-auto flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-gray-200 bg-white text-gray-800 transition-colors hover:bg-gray-50 lg:hidden"
           aria-label="Toggle menu"
           aria-expanded={isMenuOpen}
         >
@@ -172,7 +172,7 @@ function Navbar() {
               href="/signup"
               className="h-11 flex-1 rounded-xl bg-gradient-to-r from-[#5B4CE6] to-[#4737D1] text-sm font-bold text-white shadow-md shadow-indigo-500/20"
             >
-              Sign up
+              Sign up pp
             </Button>
 
           </div>
