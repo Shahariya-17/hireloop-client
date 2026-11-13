@@ -172,7 +172,7 @@ function Navbar() {
               href="/signup"
               className="h-11 flex-1 rounded-xl bg-gradient-to-r from-[#5B4CE6] to-[#4737D1] text-sm font-bold text-white shadow-md shadow-indigo-500/20"
             >
-              Sign up pp
+              Sign up
             </Button>
 
           </div>
